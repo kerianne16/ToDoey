@@ -18,6 +18,11 @@ class ToDoListTableViewController: UITableViewController {
             //what will happen when the user clicks Add Item button of UIAlert
             print("Success!")
         }
+        // creating the textfield in the alert
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new item"
+            print(alertTextField.text) //printing what the user types in the textfield
+        }
         alert.addAction(action)
         
         present(alert, animated: true, completion: nil)
@@ -56,7 +61,7 @@ class ToDoListTableViewController: UITableViewController {
         return cell
         //return to the table view and displayed
     }
-    // need to 
+    
     // this will change the select to flash grey then back to white instead of being just grey when selected
     // detects which row is selected
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
