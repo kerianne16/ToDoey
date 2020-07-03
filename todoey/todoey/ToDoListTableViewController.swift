@@ -10,35 +10,39 @@ import UIKit
 
 class ToDoListTableViewController: UITableViewController {
 
+    
+    // MARK: - Properties
+     
+     var itemArray = ["Find Mike", "Buy Eggos", "Destroy Demogorgon"]
+    
+    // MARK: - View Lifecycle
+     
+     override func viewDidLoad() {
+         super.viewDidLoad()
+
+     }
+  
     // MARK: - Actions
     
     @IBAction func addButtonPressed(_ sender: Any) {
+        
+        var textField = UITextField()
+        
         let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             //what will happen when the user clicks Add Item button of UIAlert
-            print("Success!")
+            self.itemArray.append(textField.text!) // force unwrapping it will never be nil appending user data to the item Array from the textfield in the alert
+            
+            self.tableView.reloadData() // after user types in item, in order for it to appear in the table view it needs to be reloaded
         }
         // creating the textfield in the alert
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Create new item"
-            print(alertTextField.text) //printing what the user types in the textfield
+            textField = alertTextField
         }
         alert.addAction(action)
         
         present(alert, animated: true, completion: nil)
-    }
-    
-    //finish main view controller 
-    
-    // MARK: - Properties
-    
-    let itemArray = ["Find Mike", "Buy Eggos", "Destroy Demogorgon"]
-    
-    // MARK: - View Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
     }
 
     // MARK: - Table view data source
