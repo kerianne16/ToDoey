@@ -15,6 +15,8 @@ class ToDoListTableViewController: UITableViewController {
      
      var itemArray = ["Find Mike", "Buy Eggos", "Destroy Demogorgon"]
     
+    let defaults = UserDefaults.standard // setting standard user defaults
+    
     // MARK: - View Lifecycle
      
      override func viewDidLoad() {
@@ -32,6 +34,7 @@ class ToDoListTableViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             //what will happen when the user clicks Add Item button of UIAlert
             self.itemArray.append(textField.text!) // force unwrapping it will never be nil appending user data to the item Array from the textfield in the alert
+            self.defaults.set(self.itemArray, forKey: "ToDoListArray")  
             
             self.tableView.reloadData() // after user types in item, in order for it to appear in the table view it needs to be reloaded
         }
